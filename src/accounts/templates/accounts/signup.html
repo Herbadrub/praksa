@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+</head>
+
+    <div class="row marketing">
+        <form class="site-form" action="/accounts/signup/" method="post">
+            {% csrf_token %} <!-- send to server - proof it's form our app -->
+            {{form}}
+            <input type="submit" value="Signup">
+        </form>
+    </div>
+{% endblock %}

@@ -17,14 +17,20 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.contrib.auth import views
+from . import views
 
+app_name = 'test_project'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^login/$', views.login, name='login'),
-    url(r'^logout/$', views.logout, name='logout'),
+    url(r'^index/$', views.index_view, name="index"),
+    #  url(r'^login_google/$', views.logingoogle_view, name="google"),
+      url(r'^$', views.home),
+    #  url(r'^login/$', views.login, name='login'),
+    #  url(r'^logout/$', views.logout, name='logout'),
     url(r'^auth/', include('social_django.urls', namespace='social')),  # <- Here
     url("^soc/", include("social_django.urls", namespace="social")),
+
+    url(r'^accounts/', include('accounts.urls')),  # for accounts url
 
 ]
