@@ -1,3 +1,5 @@
+from django.contrib.auth.models import AnonymousUser
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login
@@ -34,4 +36,6 @@ def login_view(request):
 
 def logout_view(request):
         logout(request)
-        return render(request, 'index.html')
+        request.session.flush()
+        request.user = AnonymousUser
+        return render(request, 'accounts/logout.html')
